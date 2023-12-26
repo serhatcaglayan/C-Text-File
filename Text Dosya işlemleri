@@ -1,0 +1,98 @@
+using System;
+using System.IO;
+
+namespace Dosyalarla_Çalışma
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            /// DOSYA İÇİNDEKİ TEKRAR EDEN YAZIYI BUL ////
+            /
+
+            StreamReader reader = new StreamReader("text.txt");
+
+            string find = "C#";
+            int count = 0;
+
+            while (!reader.EndOfStream)
+            {
+                string line = reader.ReadLine();
+                int index = 0;
+                for (int i = 0; i < line.Length - 1; i++)
+                {
+                    string checkString = line.Substring(index, 2);
+                    if (checkString == find)
+                    {
+                        count++;
+                    }
+                    index++;
+
+                }
+
+            }
+            Console.WriteLine(count);
+
+
+
+
+
+            /////// DOSYA YAZMA İŞLEMİ ///////
+            /
+
+              StreamWriter writer = new StreamWriter("text.txt");
+
+            using (writer)
+                for (int i = 0; i < 3; i++)
+                {
+                    writer.WriteLine("Serhat");
+                }
+            writer.Close();
+
+            StreamReader reader = new StreamReader("text.txt");
+            using (reader)
+
+                Console.WriteLine(reader.ReadToEnd());
+            reader.Close();
+
+
+
+
+
+
+
+
+
+
+
+
+            //////////// TEXT DOSYASI OKUMA İŞLEMİ /////////////////
+            /
+            string fileName = "C:\\Users\\Serhat\\drug.txt";
+            StreamReader reader = new StreamReader(fileName);
+
+            while (!reader.EndOfStream)
+            {
+                Console.WriteLine(reader.ReadLine());
+            }
+
+
+            //////////////
+
+            string fileName = "C:\\Users\\Serhat\\drug.txt";
+
+            StreamReader reader = new StreamReader(fileName);
+            int lineNumber = 0;
+            string line = reader.ReadLine();
+            while (line != null)
+            {
+                lineNumber++;
+                Console.WriteLine("Line {0} : {1} ", lineNumber, line);
+                line = reader.ReadLine();
+            }
+            reader.Close();
+
+
+        }
+    }
+}
